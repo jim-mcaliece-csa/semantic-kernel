@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/AiPlatformSolution/.vs/AiPlatformSolution/FileContentIndex
+/AiPlatformSolution/.vs/AiPlatformSolution/DesignTimeBuild
+/AiPlatformSolution/.vs/ProjectEvaluation
