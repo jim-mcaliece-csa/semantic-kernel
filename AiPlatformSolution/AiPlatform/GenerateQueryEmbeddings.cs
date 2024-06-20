@@ -1,8 +1,11 @@
 using AiPlatform.Settings;
+using AiPlatform.Classes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace AiPlatform
 {
@@ -18,10 +21,21 @@ namespace AiPlatform
 		}
 
         [Function("GetQueryEmbeddings")]
-        public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequest req)
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req)
         {
             _logger.LogInformation("Start: GetQueryEmbeddings");
-            return new OkObjectResult("Welcome to Azure Functions!");//Commented
+			var body = JsonConvert.DeserializeObject<InputParams>(await ReadBodyAsStringAsync(req.Body));
+
+			return new OkObjectResult("Welcome to Azure Functions!");//Commented
         }
-    }
+
+		private async Task<string> ReadBodyAsStringAsync(Stream body)
+		{
+			using (StreamReader reader = new StreamReader(body, Encoding.UTF8))
+			{
+				var str = await reader.ReadToEndAsync();
+				return str;
+			}
+		}
+	}
 }
