@@ -9,12 +9,12 @@ using System.Text;
 
 namespace AiPlatform
 {
-    public class GenerateQueryEmbeddings
-    {
-        private readonly ILogger<GenerateQueryEmbeddings> _logger;
+    public class AiPlatformOrchestrator
+	{
+        private readonly ILogger<AiPlatformOrchestrator> _logger;
 		private readonly AzureOpenAiSettings _azureOpenAiSettings;
 
-		public GenerateQueryEmbeddings(ILogger<GenerateQueryEmbeddings> logger, AzureOpenAiSettings azureOpenAiSettings)
+		public AiPlatformOrchestrator(ILogger<AiPlatformOrchestrator> logger, AzureOpenAiSettings azureOpenAiSettings)
         {
             _logger = logger;
 			_azureOpenAiSettings = azureOpenAiSettings;
